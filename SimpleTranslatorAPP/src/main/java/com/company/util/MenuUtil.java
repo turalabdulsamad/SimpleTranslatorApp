@@ -17,8 +17,8 @@ import java.util.Scanner;
 public class MenuUtil {
 
     private static int option;
-    public static final String fileName = "words.txt";
-    public static HashMap hMap;
+    private static final String fileName = "words.txt";
+    private static HashMap hMap;
 
     public static void Menu() throws Exception {
         System.out.println("Do you want your question in Azerbaijani (enter 1) or English (enter 2)?");
@@ -28,23 +28,29 @@ public class MenuUtil {
 
     public static HashMap<String, String> getOption() throws Exception {
         Scanner sc = new Scanner(System.in);
-        option = sc.nextInt();
+       
 
-        HashMap<String, String> hMap = new HashMap<>();
-        if (option == 1) {
-            hMap = FileUtil.getMapFromAZtoENG(fileName);
-        } else if (option == 2) {
-            hMap = FileUtil.getMapFromENGtoAZ(fileName);
+//        HashMap<String, String> hMap = new HashMap<>();
+        while (true) {
+            option = sc.nextInt();
+            if (option == 1) {
+                return FileUtil.getMapFromAZtoENG(fileName);
+            } else if (option == 2) {
+                return FileUtil.getMapFromENGtoAZ(fileName);
+            }
+            System.out.println("Please enter a correct option number..");
         }
-        return hMap;
     }
 
     public static List getWords() throws Exception {
-
-        if (option == 1) {
-            return FileUtil.azWords(fileName);
-        } else {
-            return FileUtil.engWords(fileName);
+        while (true) {
+            if (option == 1) {
+                return FileUtil.azWords(fileName);
+            } else if (option == 2) {
+                return FileUtil.engWords(fileName);
+            } else {
+                System.out.println("Please enter a correct option..");
+            }
         }
     }
 
@@ -75,9 +81,8 @@ public class MenuUtil {
                 System.out.println("YOU LOST!");
                 System.out.println("Correct answer is: " + hMap.get(list.get(index)));
                 break;
-            } 
+            }
 
-      }
         }
     }
 }
