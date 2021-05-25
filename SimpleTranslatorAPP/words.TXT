@@ -1,0 +1,7 @@
+map, xerite
+apple, alma
+orange, portagal
+football, futbol
+stadium, stadion
+center, merkez
+Shanghai, Sanxay
